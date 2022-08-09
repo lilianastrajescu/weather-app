@@ -217,6 +217,37 @@ ul {
 .main-row-2 {
   margin-top: 40px;
 }
+.link-github button {
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 8px 8px;
+  color: #1a56db;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 0.2em;
+  cursor: pointer;
+  border: 2px solid #1a56db;
+  text-decoration: none;
+}
+.link-github button:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #1a56db;
+}
+.link-github button:visited:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #1a56db;
+}
+
+.button-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 1150px) {
   .button-position {
