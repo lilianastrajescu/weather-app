@@ -114,23 +114,21 @@ ul {
   font-size: 80px;
 }
 .celsius {
-  background: none;
   color: white;
-  border: none;
-  font-size: 25px;
-  margin-right: -12px;
+  font-size: 23px;
+
+  text-decoration: none;
 }
 .celsius:hover {
-  font-size: 27px;
+  font-size: 26px;
 }
 .fahrenheit {
-  background: none;
   color: white;
-  border: none;
-  font-size: 25px;
+  font-size: 23px;
+  text-decoration: none;
 }
 .fahrenheit:hover {
-  font-size: 27px;
+  font-size: 26px;
 }
 .content-degree {
   font-size: 50px;
@@ -139,10 +137,14 @@ ul {
   display: inline-block;
 }
 .degrees-line {
-  font-size: 25px;
-  margin-right: -12px;
+  font-size: 23px;
 }
-
+.celsius:focus{
+  font-size: 26px;
+}
+.fahrenheit:focus{
+  font-size: 26px;
+}
 #cloud-image {
   width: 70px;
   height: 70px;

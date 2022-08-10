@@ -37,30 +37,30 @@ function formatDate(timestamp) {
   let month = months[date.getMonth()];
   let year = date.getFullYear();
   let day = days[date.getDay()];
- return `<b>${day}</b></br> <small>${dateCurrent} ${month} ${year}</br> ${hours}:${minutes}</small>`;
+  return `<b>${day}</b></br> <small>${dateCurrent} ${month} ${year}</br> ${hours} : ${minutes}</small>`;
 }
 
 // Celsius Fahrenheit conversion
 function celsiusToFahrenheit(event) {
-  let fahrenheit = document.querySelector(".fahrenheit").value;
+  event.preventDefault();
   let specificDegree = document.querySelector("#specific-degree");
-  let fahrenheitConvert = Math.round((specificDegree.innerHTML * 9) / 5) + 32;
-  document.querySelector("#specific-degree").innerHTML = fahrenheitConvert;
+  let fahrenheitConvert = Math.round((celsiusTemperature * 9) / 5) + 32;
+  specificDegree.innerHTML = Math.round(fahrenheitConvert);
 }
 
 let conversionToFahrenheit = document.querySelector(".fahrenheit");
 conversionToFahrenheit.addEventListener("click", celsiusToFahrenheit);
 
 function fahrenheitToCelsius(event) {
-  let celsius = document.querySelector(".celsius").value;
+  event.preventDefault();
   let specificDegree = document.querySelector("#specific-degree");
-  let celsiusConvert = (Math.round(specificDegree.innerHTML - 32) * 5) / 9;
-  document.querySelector("#specific-degree").innerHTML =
-    Math.round(celsiusConvert);
+  specificDegree.innerHTML = Math.round(celsiusTemperature);
 }
 
 let conversionToCelsius = document.querySelector(".celsius");
 conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
+
+let celsiusTemperature = null;
 
 //Geo Location/weather
 function myPosition(position) {
@@ -86,15 +86,19 @@ function weather(response) {
   let dateElement = document.querySelector(".date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   let iconWeather = document.querySelector("#cloud-image");
-  iconWeather.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconWeather.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
   iconWeather.setAttribute("alt", response.data.weather[0].description);
-}
 
+  celsiusTemperature = response.data.main.temp;
+}
 
 function search(city) {
   let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-   axios.get(url).then(weather);
+  axios.get(url).then(weather);
 }
 
 function handleSubmit(event) {
@@ -106,11 +110,11 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
-search("Calgary");
-
 let button = document.querySelector(".button-position");
 function loc(request) {
   request.preventDefault();
   navigator.geolocation.getCurrentPosition(myPosition);
 }
 button.addEventListener("click", loc);
+
+search("Calgary");
