@@ -50,15 +50,7 @@ function fahrenheitToCelsius(event) {
 let conversionToCelsius = document.querySelector(".celsius");
 conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
 
-//Geo Location Weather
-
-let lat = "position.coords.latitude";
-let lon = "position.coords.longitude";
-let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
-let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-axios.get(url).then(weather);
-
-// Current position
+//Geo Location/weather 
 function myPosition(position) {
   console.log(position);
   let lat = position.coords.latitude;
