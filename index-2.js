@@ -1,34 +1,43 @@
-let now = new Date();
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "Jun",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let day = days[now.getDay()];
-let month = months[now.getMonth()];
-let date = now.getDate();
-let year = now.getFullYear();
-let hours = now.getHours();
-let minutes = now.getMinutes();
+// Date time
 
-if (minutes < 10) {
-  minutes = "0" + minutes;
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+   if (hours < 10) {
+     hours = "0" + hours;
+   }
+  let minutes = date.getMinutes();
+   if (minutes < 10) {
+     minutes = "0" + minutes;
+   }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "Jun",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let day = document.querySelector(".day-text").innerHTML =  days[date.getDay()];
+  return `${day} ${months} ${hours}:${minutes}`;
 }
 
-let currentDayTime = (document.querySelector(
-  ".date-time"
-).innerHTML = `${date} ${month} ${year}  ${hours}:${minutes}`);
-
+// Celsius Fahrenheit conversion
 function celsiusToFahrenheit(event) {
   let fahrenheit = document.querySelector(".fahrenheit").value;
   let specificDegree = document.querySelector("#specific-degree");
@@ -50,9 +59,8 @@ function fahrenheitToCelsius(event) {
 let conversionToCelsius = document.querySelector(".celsius");
 conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
 
-//Geo Location/weather 
+//Geo Location/weather
 function myPosition(position) {
-  console.log(position);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
@@ -61,7 +69,7 @@ function myPosition(position) {
 }
 navigator.geolocation.getCurrentPosition(myPosition);
 
-function weather(response, event) {
+function weather(response) {
   let heading = document.querySelector("#specific-degree");
   heading.innerHTML = Math.round(response.data.main.temp);
   let cityName = document.querySelector(".city");
@@ -72,9 +80,10 @@ function weather(response, event) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   let cloud = document.querySelector("#cloud");
   cloud.innerHTML = response.data.clouds.all;
+  let dateElement = document.querySelector(".date-time");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   //let iconWeather = document.querySelector("#cloud-image");
   //iconWeather.innerHTML = `<img src="icons/${response.data.weather.icon}.png"/>`;
-  console.log(response);
 }
 function cityDisplay(event) {
   event.preventDefault();
@@ -89,11 +98,9 @@ function cityDisplay(event) {
 let cityForm = document.querySelector(".search-container");
 cityForm.addEventListener("submit", cityDisplay);
 
-
 let button = document.querySelector(".button-position");
 function loc(request) {
   request.preventDefault();
   navigator.geolocation.getCurrentPosition(myPosition);
 }
 button.addEventListener("click", loc);
-
