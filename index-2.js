@@ -90,18 +90,23 @@ function weather(response) {
   iconWeather.setAttribute("alt", response.data.weather[0].description);
 }
 
-function cityDisplay(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#search");
-  let submitIcon = document.querySelector(".icon");
-  let showCity = document.querySelector(".city");
-  showCity.innerHTML = `${cityInput.value}`;
+
+function search(city) {
   let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(weather);
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+   axios.get(url).then(weather);
 }
-let cityForm = document.querySelector(".search-container");
-cityForm.addEventListener("submit", cityDisplay);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#search");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector(".search-container");
+form.addEventListener("submit", handleSubmit);
+
+search("Calgary");
 
 let button = document.querySelector(".button-position");
 function loc(request) {
