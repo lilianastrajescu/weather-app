@@ -63,14 +63,8 @@ conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
 let celsiusTemperature = null;
 
 //Geo Location/weather
-function myPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(weather);
-}
-navigator.geolocation.getCurrentPosition(myPosition);
+
+
 
 function weather(response) {
   let heading = document.querySelector("#specific-degree");
@@ -110,11 +104,5 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
-let button = document.querySelector(".button-position");
-function loc(request) {
-  request.preventDefault();
-  navigator.geolocation.getCurrentPosition(myPosition);
-}
-button.addEventListener("click", loc);
 
 search("Calgary");
