@@ -89,8 +89,7 @@ input:focus::placeholder {
   width: 180px;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: bold;
-  font-size: 23px;
+  font-size: 25px;
   float: left;
 }
 

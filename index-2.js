@@ -37,7 +37,7 @@ function formatDate(timestamp) {
   let month = months[date.getMonth()];
   let year = date.getFullYear();
   let day = days[date.getDay()];
- return `${day}</br> ${dateCurrent} ${month} ${year}</br> ${hours}:${minutes}`;
+ return `<b>${day}</b></br> <small>${dateCurrent} ${month} ${year}</br> ${hours}:${minutes}</small>`;
 }
 
 // Celsius Fahrenheit conversion
