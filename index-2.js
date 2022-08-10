@@ -85,9 +85,11 @@ function weather(response) {
   cloud.innerHTML = response.data.clouds.all;
   let dateElement = document.querySelector(".date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  //let iconWeather = document.querySelector("#cloud-image");
-  //iconWeather.innerHTML = `<img src="icons/${response.data.weather.icon}.png"/>`;
+  let iconWeather = document.querySelector("#cloud-image");
+  iconWeather.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconWeather.setAttribute("alt", response.data.weather[0].description);
 }
+
 function cityDisplay(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#search");
