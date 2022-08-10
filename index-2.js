@@ -3,13 +3,13 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
-   if (hours < 10) {
-     hours = "0" + hours;
-   }
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let minutes = date.getMinutes();
-   if (minutes < 10) {
-     minutes = "0" + minutes;
-   }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = [
     "Sunday",
     "Monday",
@@ -33,8 +33,11 @@ function formatDate(timestamp) {
     "November",
     "December",
   ];
-  let day = document.querySelector(".day-text").innerHTML =  days[date.getDay()];
-  return `${day} ${months} ${hours}:${minutes}`;
+  let dateCurrent = date.getDate();
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+  let day = days[date.getDay()];
+ return `${day}</br> ${dateCurrent} ${month} ${year}</br> ${hours}:${minutes}`;
 }
 
 // Celsius Fahrenheit conversion
@@ -80,7 +83,7 @@ function weather(response) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   let cloud = document.querySelector("#cloud");
   cloud.innerHTML = response.data.clouds.all;
-  let dateElement = document.querySelector(".date-time");
+  let dateElement = document.querySelector(".date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   //let iconWeather = document.querySelector("#cloud-image");
   //iconWeather.innerHTML = `<img src="icons/${response.data.weather.icon}.png"/>`;

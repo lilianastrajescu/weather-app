@@ -85,20 +85,13 @@ input:focus::placeholder {
     0 17px 50px 0 rgba(255, 255, 255, 0.048);
 }
 
-.day-text {
-  font-weight: bold;
-  font-size: 30px;
-  float: left;
-}
-
-.day-text p {
+.date{
+  width: 180px;
   margin-top: 0;
   margin-bottom: 0;
-}
-.date-time {
-  font-size: 20px;
-  font-weight: normal;
-  display: block;
+  font-weight: bold;
+  font-size: 23px;
+  float: left;
 }
 
 .details-weather li {
