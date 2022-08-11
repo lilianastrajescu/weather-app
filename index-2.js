@@ -106,3 +106,5 @@ form.addEventListener("submit", handleSubmit);
 
 
 search("Calgary");
+
+//forecast
