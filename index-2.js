@@ -111,12 +111,9 @@ form.addEventListener("submit", handleSubmit);
 search("Calgary");
 
 //Forecast section
-
-function displayForecast(response) {
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector(".container-2");
-
-  //Concatenate this string with the string above
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000); 
+  let day = date.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -126,17 +123,24 @@ function displayForecast(response) {
     "Friday",
     "Saturday",
   ];
-  //loop
+ return days[day];
+}
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector(".container-2");
+
+  //Concatenate this string with the string above
   let forecastHTML = ` <div class="row forecast">`;
   //loop
-  days.forEach(function (forecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col section-right">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col section-right">
                     <button class="text-right">
                         <ul class="day">
                             <li class="days-week">
-                               ${forecastDay.dt}
+                               ${formatDay(forecastDay.dt)}
                             </li>
                             <span class="section-right-temperature">
                                 <li><img class="images-degree" src="http://openweathermap.org/img/wn/${
@@ -153,6 +157,7 @@ function displayForecast(response) {
                         </ul>
                     </button>
     </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
