@@ -75,8 +75,8 @@ function weather(response) {
   humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#wind");
   wind.innerHTML = Math.round(response.data.wind.speed);
-  let cloud = document.querySelector("#cloud");
-  cloud.innerHTML = response.data.clouds.all;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
   let dateElement = document.querySelector(".date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   let iconWeather = document.querySelector("#cloud-image");

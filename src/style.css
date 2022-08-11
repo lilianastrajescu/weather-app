@@ -50,8 +50,8 @@ input:focus::placeholder {
 }
 
 .icon {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
 }
 
 .date {
@@ -70,13 +70,14 @@ ul {
   padding: 0;
 }
 .content-container-first {
-  width: 350px;
+  width: 400px;
   height: 150px;
   display: inline-block;
   padding-bottom: 30px;
 }
 .details-weather {
   float: right;
+  text-transform: capitalize;
 }
 
 #specific-degree {
