@@ -6,10 +6,11 @@
   margin: auto;
   margin-top: 100px;
   height: auto;
+  background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
-    rgba(37, 91, 212, 0.8774860285911239) 100%
+    rgba(34, 56, 147, 1) 100%
   );
   display: flex;
   flex-wrap: wrap;
@@ -53,7 +54,7 @@ input:focus::placeholder {
   height: 15px;
 }
 
-.date{
+.date {
   width: 180px;
   margin-top: 0;
   margin-bottom: 0;
@@ -107,10 +108,10 @@ ul {
 .degrees-line {
   font-size: 23px;
 }
-.celsius:focus{
+.celsius:focus {
   font-size: 26px;
 }
-.fahrenheit:focus{
+.fahrenheit:focus {
   font-size: 26px;
 }
 #cloud-image {
@@ -185,24 +186,24 @@ ul {
   width: 300px;
   margin-top: 10px;
   margin-bottom: 20px;
-  padding: 8px 8px;
-  color: #1a56db;
+  padding: 3px 8px;
+  color: #172045;
   font-weight: bold;
   background-color: transparent;
   border-radius: 0.2em;
   cursor: pointer;
-  border: 2px solid #1a56db;
+  border: 2px solid #172045;
   text-decoration: none;
 }
 .link-github button:hover {
   cursor: pointer;
   color: #ffffff;
-  background-color: #1a56db;
+  background-color: #172045;
 }
 .link-github button:visited:hover {
   text-decoration: none;
   color: #ffffff;
-  background-color: #1a56db;
+  background-color: #172045;
 }
 
 .button-code {
