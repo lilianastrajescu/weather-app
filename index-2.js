@@ -63,7 +63,11 @@ conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
 let celsiusTemperature = null;
 
 //Geo Location/weather
-
+function getForecast(coordinates) {
+  let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 function weather(response) {
   let heading = document.querySelector("#specific-degree");
   heading.innerHTML = Math.round(response.data.main.temp);
@@ -85,6 +89,8 @@ function weather(response) {
   iconWeather.setAttribute("alt", response.data.weather[0].description);
 
   celsiusTemperature = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -106,11 +112,11 @@ search("Calgary");
 
 //Forecast section
 
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector(".container-2");
 
   //Concatenate this string with the string above
-  let forecastHTML = ` <div class="row forecast">`;
   let days = [
     "Sunday",
     "Monday",
@@ -121,19 +127,27 @@ function displayForecast() {
     "Saturday",
   ];
   //loop
-  days.forEach(function (day) {
+  let forecastHTML = ` <div class="row forecast">`;
+  //loop
+  days.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `<div class="col section-right">
                     <button class="text-right">
                         <ul class="day">
                             <li class="days-week">
-                               ${day}
+                               ${forecastDay.dt}
                             </li>
                             <span class="section-right-temperature">
-                                <li><img class="images-degree" src="images/sun.png"></li>
-                                <li class="degree"><span class="maxim-degree-forecast">30°</span>
-                                    <span class="degree-gray">/25°</span>
+                                <li><img class="images-degree" src="http://openweathermap.org/img/wn/${
+                                  forecastDay.weather[0].icon
+                                }@2x.png"></li>
+                                <li class="degree"><span class="maxim-degree-forecast">${Math.round(
+                                  forecastDay.temp.max
+                                )}°</span>
+                                    <span class="degree-gray">/${Math.round(
+                                      forecastDay.temp.min
+                                    )}°</span>
                                 </li>
                             </span>
                         </ul>
@@ -143,5 +157,3 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
-displayForecast();
