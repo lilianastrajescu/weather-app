@@ -62,6 +62,59 @@ conversionToCelsius.addEventListener("click", fahrenheitToCelsius);
 
 let celsiusTemperature = null;
 
+//Forecast section
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector(".container-2");
+
+  //Concatenate this string with the string above
+  let forecastHTML = ` <div class="row forecast">`;
+  //loop
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col section-right">
+                    <button class="text-right">
+                        <ul class="day">
+                            <li class="days-week">
+                               ${formatDay(forecastDay.dt)}
+                            </li>
+                            <span class="section-right-temperature">
+                                <li><img class="images-degree" src="http://openweathermap.org/img/wn/${
+                                  forecastDay.weather[0].icon
+                                }@2x.png"></li>
+                                <li class="degree"><span class="maxim-degree-forecast">${Math.round(
+                                  forecastDay.temp.max
+                                )}°</span>
+                                    <span class="degree-gray">/${Math.round(
+                                      forecastDay.temp.min
+                                    )}°</span>
+                                </li>
+                            </span>
+                        </ul>
+                    </button>
+    </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //Geo Location/weather
 function getForecast(coordinates) {
   let apiKey = "3d6bcb1e707f4511e0a24749086c8223";
@@ -108,57 +161,5 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
+
 search("Calgary");
-
-//Forecast section
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000); 
-  let day = date.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
- return days[day];
-}
-function displayForecast(response) {
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector(".container-2");
-
-  //Concatenate this string with the string above
-  let forecastHTML = ` <div class="row forecast">`;
-  //loop
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `<div class="col section-right">
-                    <button class="text-right">
-                        <ul class="day">
-                            <li class="days-week">
-                               ${formatDay(forecastDay.dt)}
-                            </li>
-                            <span class="section-right-temperature">
-                                <li><img class="images-degree" src="http://openweathermap.org/img/wn/${
-                                  forecastDay.weather[0].icon
-                                }@2x.png"></li>
-                                <li class="degree"><span class="maxim-degree-forecast">${Math.round(
-                                  forecastDay.temp.max
-                                )}°</span>
-                                    <span class="degree-gray">/${Math.round(
-                                      forecastDay.temp.min
-                                    )}°</span>
-                                </li>
-                            </span>
-                        </ul>
-                    </button>
-    </div>`;
-    }
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
