@@ -64,8 +64,6 @@ let celsiusTemperature = null;
 
 //Geo Location/weather
 
-
-
 function weather(response) {
   let heading = document.querySelector("#specific-degree");
   heading.innerHTML = Math.round(response.data.main.temp);
@@ -104,7 +102,46 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
-
 search("Calgary");
 
-//forecast
+//Forecast section
+
+function displayForecast() {
+  let forecastElement = document.querySelector(".container-2");
+
+  //Concatenate this string with the string above
+  let forecastHTML = ` <div class="row forecast">`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  //loop
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col section-right">
+                    <button class="text-right">
+                        <ul class="day">
+                            <li class="days-week">
+                               ${day}
+                            </li>
+                            <span class="section-right-temperature">
+                                <li><img class="images-degree" src="images/sun.png"></li>
+                                <li class="degree"><span class="maxim-degree-forecast">30°</span>
+                                    <span class="degree-gray">/25°</span>
+                                </li>
+                            </span>
+                        </ul>
+                    </button>
+    </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
