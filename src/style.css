@@ -223,6 +223,10 @@ ul {
     margin: 0 auto;
     width: 100%;
   }
+  .container-1 {
+  padding-left: 40px;
+  width: 50%;
+}
   .section-right button {
     width: auto;
     display: flex;
