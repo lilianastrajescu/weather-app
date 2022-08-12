@@ -122,8 +122,8 @@ ul {
   font-size: 26px;
 }
 #cloud-image {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: auto;
   margin-left: 30px;
 }
 
