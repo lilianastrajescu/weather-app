@@ -219,6 +219,9 @@ ul {
 }
 
 @media (max-width: 581px) {
+  #main-container{
+    width: 90%;
+  }
   .section-right button {
     width: auto;
     display: flex;
