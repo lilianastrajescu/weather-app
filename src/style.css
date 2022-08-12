@@ -4,7 +4,7 @@
   border-radius: 1rem;
   width: 70%;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 40px;
   padding-bottom:40px;
   height: auto;
   background: rgb(2, 0, 36);
@@ -30,6 +30,11 @@
 
 .search-container {
   padding-top: 10px;
+  display: flex;
+}
+
+.buttons-search{
+   padding-top: 10px;
 }
 #search {
   margin-top: 20px;
@@ -56,8 +61,8 @@ input:focus::placeholder {
 }
 
 .button-position{
-    width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
   padding-left: 10px;
 }
 
@@ -221,4 +226,35 @@ ul {
     flex-wrap: nowrap;
     justify-content: space-around;
   }
+   .content-degree {
+   font-size: 40px;
+  }
+  .search-container{
+    width: 20px;
+    display: inline-grid;
+  }
+  #search{
+    font-size: 12px;
+  }
+  .date{
+    font-size: 20px;
+  }
+.degrees-buttons{
+  display: inline-block;
 }
+#specific-degree{
+  font-size: 50px;
+}
+.forecast{
+  margin-top: 0;
+}
+.icon{
+  width: 18px;
+  height: 18px;
+}
+}
+@media (max-width: 890px) {
+.details-weather{
+  float: left;
+  margin-top: 10px;
+}}
