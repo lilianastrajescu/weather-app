@@ -84,7 +84,7 @@ function displayForecast(response) {
   //Concatenate this string with the string above
   let forecastHTML = ` <div class="row forecast">`;
   //loop
-  forecast.forEach(function (forecastDay, index) {
+  forecast.forEach(function weatherSections(forecastDay, index) {
     if (index < 7) {
       forecastHTML =
         forecastHTML +
@@ -95,9 +95,9 @@ function displayForecast(response) {
                                ${formatDay(forecastDay.dt)}
                             </li>
                             <span class="section-right-temperature">
-                                <li><img class="images-degree" src="http://openweathermap.org/img/wn/${
+                                <li><img class="images-degree" src="${decodeIcon(
                                   forecastDay.weather[0].icon
-                                }@2x.png"></li>
+                                )}"></li>
                                 <li class="degree"><span class="maxim-degree-forecast">${Math.round(
                                   forecastDay.temp.max
                                 )}°</span>
@@ -137,7 +137,8 @@ function weather(response) {
   let iconWeather = document.querySelector("#cloud-image");
   iconWeather.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    decodeIcon(response.data.weather[0].icon)
+    //`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconWeather.setAttribute("alt", response.data.weather[0].description);
 
@@ -161,13 +162,12 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
-
 search("Calgary");
 
-//My position 
+//My position
 
 function currentPosition() {
-  navigator.geolocation.getCurrentPosition(myPosition);;
+  navigator.geolocation.getCurrentPosition(myPosition);
 }
 
 function myPosition(position) {
@@ -178,10 +178,73 @@ function myPosition(position) {
   axios.get(url).then(weather);
 }
 
-
 let button = document.querySelector(".button-position");
 function loc(request) {
   request.preventDefault();
   navigator.geolocation.getCurrentPosition(myPosition);
 }
 button.addEventListener("click", loc);
+
+
+function decodeIcon(iconName) {
+  let iconUrl;
+  switch (iconName) {
+    case "01d":
+      iconUrl = "images/icons-weather/01d.png";
+      break;
+    case "01n":
+      iconUrl = "images/icons-weather/01n.png";
+      break;
+    case "02d":
+      iconUrl = "images/icons-weather/02d.png";
+      break;
+    case "02n":
+      iconUrl = "images/icons-weather/02n.png";
+      break;
+    case "03d":
+      iconUrl = "images/icons-weather/03d.png";
+      break;
+    case "03n":
+      iconUrl = "images/icons-weather/03n.png";
+      break;
+    case "04d":
+      iconUrl = "images/icons-weather/04d.png";
+      break;
+    case "04n":
+      iconUrl = "images/icons-weather/04n.png";
+      break;
+    case "09d":
+      iconUrl = "images/icons-weather/09d.png";
+      break;
+    case "09n":
+      iconUrl = "images/icons-weather/09n.png";
+      break;
+    case "10d":
+      iconUrl = "images/icons-weather/10d.png";
+      break;
+    case "10n":
+      iconUrl = "images/icons-weather/10n.png";
+      break;
+    case "11d":
+      iconUrl = "images/icons-weather/11d.png";
+      break;
+    case "11n":
+      iconUrl = "images/icons-weather/11n.png";
+      break;
+    case "13d":
+      iconUrl = "images/icons-weather/13d.png";
+      break;
+    case "13n":
+      iconUrl = "images/icons-weather/13n.png";
+      break;
+    case "50d":
+      iconUrl = "images/icons-weather/50d.png";
+      break;
+    case "50n":
+      iconUrl = "images/icons-weather/50n.png";
+      break;
+    default:
+      break;
+  }
+  return iconUrl;
+}
