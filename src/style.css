@@ -222,6 +222,11 @@ ul {
   #main-container{
     margin: 0 auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+
     
   }
   .section-right button {
@@ -231,24 +236,19 @@ ul {
     flex-wrap: nowrap;
     justify-content: space-around;
   }
-   .content-degree {
-   font-size: 40px;
-  }
+   
   .search-container{
     width: 20px;
     display: inline-grid;
   }
   #search{
-    font-size: 12px;
-  }
-  .date{
-    font-size: 20px;
+    font-size: 14px;
   }
 .degrees-buttons{
   display: inline-block;
 }
 #specific-degree{
-  font-size: 50px;
+  font-size: 55px;
 }
 .forecast{
   margin-top: 0;
