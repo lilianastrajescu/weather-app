@@ -5,6 +5,7 @@
   width: 70%;
   margin: auto;
   margin-top: 100px;
+  padding-bottom:40px;
   height: auto;
   background: rgb(2, 0, 36);
   background: linear-gradient(
@@ -157,13 +158,6 @@ ul {
 .days-week {
   float: left;
   padding-right: 10px;
-}
-.section-right button:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 1.5rem;
-  color: #ffffff;
-  transition: 0.9s ease;
-  padding: 10px;
 }
 .day li {
   list-style-type: none;
