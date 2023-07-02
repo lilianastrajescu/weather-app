@@ -118,7 +118,7 @@ function displayForecast(response) {
 //Geo Location/weather
 function getForecast(coordinates) {
   let apiKey = "ff1a68894e368dd886f9fa81caeebd6b";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 function weather(response) {
@@ -174,7 +174,7 @@ function myPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "ff1a68894e368dd886f9fa81caeebd6b";
-  let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(url).then(weather);
 }
 
