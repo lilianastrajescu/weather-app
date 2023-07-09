@@ -81,7 +81,6 @@ function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector(".container-2");
 
-  //Concatenate this string with the string above
   let forecastHTML = ` <div class="row forecast">`;
   //loop
   forecast.forEach(function weatherSections(forecastDay, index) {
@@ -122,6 +121,12 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 function weather(response) {
+ if (!response.data || !response.data.main || !response.data.weather) {
+   // Data structure is not as expected, handle the error
+   console.error("Invalid API response:", response);
+   return;
+ }
+
   let heading = document.querySelector("#specific-degree");
   heading.innerHTML = Math.round(response.data.main.temp);
   let cityName = document.querySelector(".city");
@@ -162,7 +167,7 @@ function handleSubmit(event) {
 let form = document.querySelector(".search-container");
 form.addEventListener("submit", handleSubmit);
 
-search("Calgary");
+search("Milan");
 
 //My position
 
@@ -174,7 +179,8 @@ function myPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "aea06fe0a91132d87cff36a96a5249bf";
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
   axios.get(url).then(weather);
 }
 
@@ -184,7 +190,6 @@ function loc(request) {
   navigator.geolocation.getCurrentPosition(myPosition);
 }
 button.addEventListener("click", loc);
-
 
 function decodeIcon(iconName) {
   let iconUrl;
